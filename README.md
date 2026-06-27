@@ -96,6 +96,25 @@ For multi-step tasks, state a brief plan:
 
 Strong success criteria let the LLM loop independently. Weak criteria ("make it work") require constant clarification.
 
+## Skills
+
+The plugin ships three skills. The first is the universal anchor; the other two are focused procedures for specific moments in a task.
+
+| Skill | When it runs | Principles |
+|-------|--------------|------------|
+| **`karpathy-guidelines`** | Throughout any non-trivial coding work — the universal default | All four |
+| **`plan-first`** | *Before* writing code: surface assumptions, interpretations, tradeoffs, and a verifiable plan | 1 · Think Before Coding, 4 · Goal-Driven Execution |
+| **`surgical-review`** | *Before* committing: audit the diff so every changed line traces to the task | 3 · Surgical Changes |
+
+### How Claude invokes them
+
+Each skill has a `description` in its `SKILL.md` frontmatter that tells Claude *when* it applies. There are two paths:
+
+- **Automatically** — Claude reads the descriptions and invokes a skill on its own when your request matches (e.g. "add a feature" → `plan-first`; "let's commit" → `surgical-review`). The descriptions are written to state concrete trigger moments so auto-invocation is reliable. No action needed from you.
+- **On request** — type the skill name as a slash command: `/karpathy-guidelines`, `/plan-first`, or `/surgical-review`. This forces the skill even when Claude wouldn't have picked it.
+
+**Make a skill fire every time:** reference it in your project `CLAUDE.md` — e.g. "Before any commit, run the surgical-review skill." Instructions in `CLAUDE.md` are always in context, so they turn an optional auto-trigger into a standing rule.
+
 ## Install
 
 **Option A: Claude Code Plugin (recommended)**

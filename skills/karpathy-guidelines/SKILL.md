@@ -1,6 +1,6 @@
 ---
 name: karpathy-guidelines
-description: Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.
+description: The universal coding-conduct skill — apply to ANY non-trivial code work (writing, editing, refactoring, debugging, reviewing). Encodes four anti-mistake principles from Andrej Karpathy: think before coding (no silent assumptions), simplicity first (no bloat), surgical changes (touch only what the task needs), and goal-driven execution (verifiable success criteria). Use at the start of and throughout coding tasks; pairs with the plan-first and surgical-review procedures. Also invokable manually as /karpathy-guidelines.
 license: MIT
 ---
 
@@ -65,3 +65,14 @@ For multi-step tasks, state a brief plan:
 ```
 
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+
+---
+
+## Companion procedures
+
+This is the universal anchor skill. For non-trivial work, chain the two focused procedures:
+
+- **At the start of a task** → run `plan-first`: surface assumptions, list interpretations, present tradeoffs, and write a verifiable step-by-step plan (Principles 1 & 4).
+- **Before committing** → run `surgical-review`: audit the diff so every changed line traces to the request; catch drive-by refactors and style drift (Principle 3).
+
+Both trigger automatically when their conditions match, and can be invoked manually as `/plan-first` and `/surgical-review`.
